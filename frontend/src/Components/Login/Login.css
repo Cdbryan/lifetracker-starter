@@ -1,0 +1,43 @@
+.Login .card {
+    display: flex;
+    align-items: center;
+}
+
+.Login{
+    display: flex; 
+    justify-content: center;
+}
+
+.Label{
+    color: white; 
+}
+
+.Login .card {
+    min-height: 600px;
+    width: 520px;
+    padding: 24px 36px 0;
+    flex-direction: column;
+}
+
+.Login .card .form, .Login .card .form .input-field {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.Login .card .form .input-field {
+    margin: 8px 0;
+}
+
+.Login .card .form .input-field input {
+    height: 60px;
+    padding: 0 15px;
+    font-size: 16px;
+    border: 1px solid white;
+    width: 100%;
+    background: transparent;
+    color: white;
+}
+
+

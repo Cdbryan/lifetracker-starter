@@ -5,6 +5,6 @@ export default function Landingpage(){
 
 
     return(
-        <hi></hi>
+        <div> hi this is the landing page </div>
     )
 }

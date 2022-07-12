@@ -4,17 +4,35 @@ import "./App.css";
 import Navbar from "./Components/Navbar/Navbar";
 import Container from "@mui/material/Container";
 import { formLabelClasses } from "@mui/material";
+import Landingpage from "./Components/Landingpage/Landingpage";
+import Login from "./Components/Login/Login";
+import * as React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Register from "./Components/Register/Register";
+import Nutrition from "./Components/Nutrition/Nutrition";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <>
-      <Navbar></Navbar>
-      <Container sx={{ backgroundColor: "blue", flexGrow: 1 }} maxWidth={true}>
-        {" "}
-        inside my container{" "}
-      </Container>
+      <BrowserRouter>
+        <Navbar></Navbar>
+        <Container
+          sx={{ backgroundColor: "blue", flexGrow: 1 }}
+          maxWidth={true}
+        >
+          <Routes>
+            <Route path="/" element={<Landingpage> </Landingpage>} />
+            <Route path="/activity" />
+            <Route path="/exercise" />
+            <Route path="/nutrition" element={<Nutrition></Nutrition>} />
+            <Route path="/sleep" />
+            <Route path="/login" element={<Login></Login>} />
+            <Route path="/register" element={<Register></Register>} />
+          </Routes>
+        </Container>
+      </BrowserRouter>
     </>
   );
 }

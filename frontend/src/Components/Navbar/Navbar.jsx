@@ -6,11 +6,12 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+// import { Link } from "react-router-dom"
 import "./Navbar.css"
 
 export default function Navbar() {
   return (
-    <Box sx={{ flexGrow: 0 }}>
+    <Box className="Navbar" sx={{ flexGrow: 0 }}>
       <AppBar position="static">
         <Toolbar>
           <IconButton
@@ -25,7 +26,12 @@ export default function Navbar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             News
           </Typography>
-          <Button color="inherit">Login</Button>
+          <a href="/activity"><Button color="inherit" > Activity </Button></a>
+          <a href="/exercise"><Button color="inherit" > Exercise </Button></a>
+          <a href="/nutrition"><Button color="inherit" > Nutrition </Button></a>
+          <a href="/sleep"><Button color="inherit" > Sleep </Button></a>
+          <a href="/login"><Button color="inherit" > Login </Button></a>
+          <a href="/register"><Button color="inherit"> Sign Up</Button></a>
         </Toolbar>
       </AppBar>
     </Box>
