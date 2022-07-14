@@ -1,7 +1,47 @@
 import * as React from "react";
 import "./Login.css";
+import { useEffect, useState } from "react"
+import axios from "axios"
 
 export default function () {
+  const [isProcessing, setIsProcessing] = useState(false)
+  const [errors, setErrors] = useState({})
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+  })
+
+  const handleOnInputChange = (event) => {
+    if (event.target.name === "email") {
+      if (event.target.value.indexOf("@") === -1) {
+        setErrors((e) => ({ ...e, email: "Please enter a valid email." }))
+      } else {
+        setErrors((e) => ({ ...e, email: null }))
+      }
+    }
+
+    setForm((f) => ({ ...f, [event.target.name]: event.target.value }))
+  }
+
+  const handleOnSubmit = async () => {
+    setIsProcessing(true)
+    setErrors((e) => ({ ...e, form: null }))
+
+    try {
+      const res = await axios.post("http://localhost:3001/auth/login", form)
+      if (res?.data?.user) {
+        setUser(res.data.user)
+      } else {
+        setErrors((e) => ({ ...e, form: "Invalid username/password combination" }))
+      }
+    } catch (err) {
+      console.log(err)
+      setErrors((e) => ({ ...e, form: "Invalid username/password combination" }))
+    } finally {
+      setIsProcessing(false)
+    }
+  }
+  
   return (
     <div className="Login">
       <div className="card">
@@ -14,7 +54,7 @@ export default function () {
               type="email"
               name="email"
               placeholder="user@gmail.com"
-              value=""
+              onChange={handleOnInputChange}
             />
           </div>
           <div className="input-field">
@@ -23,10 +63,10 @@ export default function () {
               type="password"
               name="password"
               placeholder="password"
-              value=""
+              onChange={handleOnInputChange}
             />
           </div>
-          <button className="btn">Login</button>
+          <button className="btn" onClick={handleOnSubmit}>Login</button>
         </div>
         <div className="footer">
           <p>
