@@ -62,9 +62,6 @@ If I had more time I would personalize the website more and add features such as
 
 I have all of my backend working which is mostly what I demoed however I would like to have more of my frontend connected to my backend to demo. 
 
-### Open-source libraries used
-
-- Add any links to open-source libraries used in your project.
 
 ### Shout out
 
