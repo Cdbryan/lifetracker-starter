@@ -1,0 +1,82 @@
+.exerciseSummary{
+    background-color:gold;
+    width: 360px;
+    height: 220px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: row;
+} 
+
+.sleepSummary{
+    background-color: purple;
+    width: 360px;
+    height: 220px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: row;
+}
+
+.caloriesSummary{
+    background-color: blue; 
+    width: 360px;
+    height: 220px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: row;
+}
+
+.main{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 35px;
+    grid-gap: 15px;
+    gap: 15px;
+}
+
+
+.caloriesSmall{
+    background-color: lightgreen;
+    height: 110px;
+    width: 360px;
+    height: 220px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+}
+
+.exerciseSmall{
+    background-color: grey;
+    height: 110px;
+    width: 360px;
+    height: 220px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sleepSmall{
+    background-color: pink;
+    height: 110px;
+    width: 360px;
+    height: 220px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.more{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 35px;
+    grid-gap: 15px;
+    gap: 15px;
+}
+
+.stats{
+    justify-content: center;
+    align-items: center;
+    margin-left: 150px;
+}

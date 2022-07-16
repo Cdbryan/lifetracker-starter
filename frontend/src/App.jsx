@@ -10,30 +10,26 @@ import * as React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Register from "./Components/Register/Register";
 import Nutrition from "./Components/Nutrition/Nutrition";
+import Activity from "./Components/Activity/Activity"
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <>
+    <div className="app" >
       <BrowserRouter>
         <Navbar></Navbar>
-        <Container
-          sx={{ backgroundColor: "blue", flexGrow: 1 }}
-          maxWidth={true}
-        >
           <Routes>
             <Route path="/" element={<Landingpage> </Landingpage>} />
-            <Route path="/activity" />
+            <Route path="/activity" element={<Activity></Activity>}/>
             <Route path="/exercise" />
             <Route path="/nutrition" element={<Nutrition></Nutrition>} />
             <Route path="/sleep" />
             <Route path="/login" element={<Login></Login>} />
             <Route path="/register" element={<Register></Register>} />
           </Routes>
-        </Container>
       </BrowserRouter>
-    </>
+    </div>
   );
 }
 

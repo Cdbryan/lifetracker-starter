@@ -2,20 +2,19 @@ const db = require("../db")
 const {BadRequestError, NotFoundError} = require("../utils/errors")
 
 class Nutrition{
-    // static makeNutritionCard(foodItem, user){
-    //     return{
-    //         id: foodItem.id,
-    //         name: foodItem.name,
-    //         category: foodItem.category,
-    //         calories: foodItem.calories,
-    //         image_url: foodItem.image_url,
-    //         user_id: foodItem.user_id,
-    //         created_at: foodItem.created_at
-    //     }
-    // }
+    static async checkInput(nutritionBody) {
+      const requiredFields = ["name", "category", "calories", "image_url"]
+      requiredFields.forEach((property) => {
+        if (!nutritionBody.hasOwnProperty(property)) {
+          throw new BadRequestError(`Missing ${property} in request body.`)
+        }
+      })}
 
-    static async insertNutrition(foodItem, user){
-        const results = await db.query (`
+    static async insertNutrition({foodItem, user}){
+      console.log("food item in insert" , foodItem)
+      Nutrition.checkInput(foodItem)
+      console.log("user", user)  
+      const results = await db.query (`
             INSERT INTO nutrition (name, category, calories, image_url, user_id)
             VALUES($1, $2, $3, $4,(SELECT id FROM users WHERE email = $5))
             RETURNING id,
@@ -24,19 +23,23 @@ class Nutrition{
                       calories,
                       image_url,
                       user_id,
-                      created_at,
-                    `
+                      created_at
+                    `,
             [foodItem.name, foodItem.category, foodItem.calories, foodItem.image_url, user.email]
         ) 
-        const nutrition = results.rows[0]   
-    }
+        return results.rows[0]    
+    }  
 
-    static async checkInput(nutritionBody) {
-        const requiredFields = ["name", "category", "calories", "image_url"]
-        requiredFields.forEach((property) => {
-          if (!nutritionBody.hasOwnProperty(property)) {
-            throw new BadRequestError(`Missing ${property} in request body.`)
-          }
-        })
+    static async listNutrition(user){
+      console.log("user id is: ", user)
+      const results = await db.query(
+        `SELECT *
+         FROM nutrition
+         WHERE user_id = $1;
+        `, [user.id]
+        )
+        return results.rows[0]
     }
 }
+
+module.exports = Nutrition;

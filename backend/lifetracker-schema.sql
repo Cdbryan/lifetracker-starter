@@ -18,3 +18,23 @@ CREATE TABLE nutrition(
   user_id    INTEGER,
   created_at TIMESTAMP NOT NULL DEFAULT NOW()  
 );
+
+CREATE TABLE sleep(
+  id         SERIAL PRIMARY KEY,
+  startDate  DATE,
+  startTime  TIME,
+  endDate    DATE,
+  endTime    TIME,
+  user_id    INTEGER, 
+  created_at TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE exercise(
+  id        SERIAL PRIMARY KEY,
+  name      TEXT,
+  category  TEXT,
+  duration  INTEGER,
+  intensity INTEGER, 
+  user_id   INTEGER,
+  created_at TIMESTAMP NOT NULL DEFAULT NOW()
+)

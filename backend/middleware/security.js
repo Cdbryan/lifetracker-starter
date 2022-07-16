@@ -22,6 +22,7 @@ const extractUserFromJwt = (req, res, next) => {
         return next() 
     } 
     catch(err){
+        console.log("error" , err)
         return next()
     }
 }
