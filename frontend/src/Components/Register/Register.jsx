@@ -2,8 +2,10 @@ import * as React from "react";
 import "./Register.css";
 import { useEffect, useState } from "react"
 import axios from "axios"
+import { useNavigate } from "react-router-dom";
+import apiClient from "../../../services/apiClient";
 
-export default function Register() {
+export default function Register({setUser}) {
   // const navigate = useNavigate()
   const [isProcessing, setIsProcessing] = useState(false)
   const [errors, setErrors] = useState({})
@@ -13,6 +15,8 @@ export default function Register() {
     password: "",
     passwordConfirm: "",
   })
+
+  const navigate = useNavigate()
 
   // useEffect(() => {
   //   // if user is already logged in,
@@ -55,7 +59,7 @@ export default function Register() {
     }
 
     try {
-      const res = await axios.post("http://localhost:3001/auth/register", {
+      const res = await apiClient.signupUser({
         name: form.name,
         email: form.email,
         username: form.username, 
@@ -65,6 +69,8 @@ export default function Register() {
       })
       if (res?.data?.user) {
         setUser(res.data.user)
+        apiClient.setToken(res?.data?.token)
+        navigate("/activity")
       } else {
         setErrors((e) => ({ ...e, form: "Something went wrong with registration" }))
       }

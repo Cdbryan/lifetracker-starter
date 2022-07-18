@@ -1,11 +1,27 @@
 import * as React from "react";
 import "./Activity.css";
+import { useNavigate } from "react-router-dom";
 
 
-export default function Activity() {
+export default function Activity({user}) {
+  
+  const navigate = useNavigate()
+  //use an if statement to check if the user is null if so re route to the login page using navigate 
+  React.useEffect(() => {console.log("user at this point is", user)}, [user])
+
+  if(user == null)
+  {
+    navigate("/login")
+  }
+
   return (
     <div className="ActivityContent">
       <h2 className="heading">Activity Feed</h2>
+      <div className="activityButtons">
+        <button className="activityButtonE ">Add Exercise</button>
+        <button className="activityButtonS ">Log Sleep</button>
+        <button className="activityButtonN ">Record Nutrition</button>
+      </div>
       <div className="stats">
         <div className="main">
           <div className="exerciseSummary">
@@ -60,7 +76,7 @@ export default function Activity() {
             </div>
           </div>
         </div>
-        <h4>More Stats</h4>
+        <h4 className="heading2">More Stats</h4>
         <div className="more">
           <div className="caloriesSmall">
             <div className="background">

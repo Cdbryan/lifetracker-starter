@@ -9,7 +9,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Logo from "../Logo/Logo";
 import "./Navbar.css";
 
-export default function Navbar() {
+export default function Navbar({user}) {
   return (
     <nav className="Navbar">
       <div className="content">
@@ -36,6 +36,14 @@ export default function Navbar() {
         </ul>
       </div>
     </nav>
+
+    // if(user != null)
+    // {
+    //   <li className="btn secondary">
+    //         //add in a on click handler that logs out the user when they hit this button 
+    //         <a href="/">Logout</a>
+    //   </li>
+    // }
 
     // <Box >
     //   <AppBar  position="static">

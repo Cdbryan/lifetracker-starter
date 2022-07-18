@@ -2,10 +2,13 @@ import * as React from "react";
 import "./Login.css";
 import { useEffect, useState } from "react"
 import axios from "axios"
+import { useNavigate } from "react-router-dom";
+import apiClient from "../../../services/apiClient";
 
-export default function () {
+export default function Login({setUser}) {
   const [isProcessing, setIsProcessing] = useState(false)
   const [errors, setErrors] = useState({})
+  const navigate = useNavigate()
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -28,9 +31,12 @@ export default function () {
     setErrors((e) => ({ ...e, form: null }))
 
     try {
-      const res = await axios.post("http://localhost:3001/auth/login", form)
+      const res = await apiClient.loginUser(form)
       if (res?.data?.user) {
         setUser(res.data.user)
+        apiClient.setToken(res?.data?.token)
+        console.log(res.data.token)
+        navigate("/activity")
       } else {
         setErrors((e) => ({ ...e, form: "Invalid username/password combination" }))
       }
@@ -41,6 +47,7 @@ export default function () {
       setIsProcessing(false)
     }
   }
+
   
   return (
     <div className="Login">
